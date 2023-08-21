@@ -7,36 +7,47 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ArcherTests {
     @Test
     public void archerCreationTest() {
-        // Testing for the name we set, the default starting level, and the correct attributes
-        Hero archer = new Archer("Kim");
-        assertEquals("Kim", archer.getName());
-        assertEquals(1, archer.getLevel());
 
-        // Setting the Archer starting attributes as expected results
-        assertEquals(1, archer.getTotalAttributes().getStrength());
-        assertEquals(7, archer.getTotalAttributes().getDexterity());
-        assertEquals(1, archer.getTotalAttributes().getIntelligence());
+        // Create new hero
+        Hero archer = new Archer("Kim");
+
+        // Get hero attributes
+        int s = archer.getTotalAttributes().getStrength();
+        int d = archer.getTotalAttributes().getDexterity();
+        int i = archer.getTotalAttributes().getIntelligence();
+        int l = archer.getLevel();
+        String name = archer.getName();
+
+        // Setting the Archer name, level and starting attributes as expected results
+        String expected = "Kim is at level 1, their attributes are: Strength = 1, Dexterity = 7, Intelligence = 1";
+        String actual = String.format("%s is at level %d, their attributes are: Strength = %d, Dexterity = %d, Intelligence = %d",
+                name, l, s, d, i);
+
+        assertEquals(expected, actual);
     }
 
     @Test
     public void archerLevelUpTest() {
+
+        // Create new hero
         Hero archer = new Archer("Ferguson");
 
-        // Getting the Archer's starting attributes
-        int startingStrength = archer.getTotalAttributes().getStrength();
-        int startingDexterity = archer.getTotalAttributes().getDexterity();
-        int startingIntelligence = archer.getTotalAttributes().getIntelligence();
-
-        // Trigger the level up
+        // Trigger the level-up
         archer.levelUp();
 
-        // Expecting the Archer to be at level 2 after levelUp
-        assertEquals(2, archer.getLevel());
+        // Get hero attributes after level-up
+        int s = archer.getTotalAttributes().getStrength();
+        int d = archer.getTotalAttributes().getDexterity();
+        int i = archer.getTotalAttributes().getIntelligence();
+        int l = archer.getLevel();
+        String name = archer.getName();
 
-        // Expecting the attributes to increase by correct amounts for the Archer hero at levelUp
-        assertEquals(startingStrength + 1, archer.getTotalAttributes().getStrength());
-        assertEquals(startingDexterity + 5, archer.getTotalAttributes().getDexterity());
-        assertEquals(startingIntelligence + 1, archer.getTotalAttributes().getIntelligence());
+        // Setting the Archer name, new level and starting attributes (1, 7, 1) + 1x level-up gain (1, 5, 1) as expected results
+        String expected = "Ferguson is at level 2, their attributes are: Strength = 2, Dexterity = 12, Intelligence = 2";
+        String actual = String.format("%s is at level %d, their attributes are: Strength = %d, Dexterity = %d, Intelligence = %d",
+                name, l, s, d, i);
+
+        assertEquals(expected, actual);
     }
 }
 

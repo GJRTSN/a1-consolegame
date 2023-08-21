@@ -47,7 +47,6 @@ public abstract class Hero {
     // Method for leveling up, overridden in subclasses
     public abstract void levelUp();
 
-
     public void equipWeapon(Weapon weapon) throws InvalidWeaponException {
         // Check if the hero is allowed to equip the weapon
        if (!validWeaponTypes.contains(weapon.getWeaponType())) {
@@ -101,6 +100,7 @@ public abstract class Hero {
         return weaponDamage * (1 + (double)damagingAttribute/100);
     }
 
+
     // Creating display for the hero's state
     public String heroDisplay() {
         StringBuilder hero = new StringBuilder();
@@ -141,5 +141,10 @@ public abstract class Hero {
     public Armor getEquippedArmor(Slot slot) {
         return equippedArmor.get(slot);
     }
+
+//    public double getWeaponDamage() {
+//        return (equippedWeapon != null) ? equippedWeapon.getWeaponDamage() : 1;
+//    }
+
 }
 

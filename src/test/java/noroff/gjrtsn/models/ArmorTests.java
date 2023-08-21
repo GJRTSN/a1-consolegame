@@ -14,24 +14,20 @@ public class ArmorTests {
         HeroAttribute armorAttributes = new HeroAttribute(1, 0, 0);
 
         // Creating a new Armor with the set attributes
-        Armor plateChest = new Armor("Common Plate Chest", 1, Slot.BODY, ArmorType.PLATE, armorAttributes);
+        Armor plate = new Armor("Common Plate Chest", 1, Slot.BODY, ArmorType.PLATE, armorAttributes);
 
-        // Expecting the name we set
-        assertEquals("Common Plate Chest", plateChest.getName());
+        String name = plate.getName();
+        String slot = String.valueOf(plate.getSlot());
+        String type = String.valueOf(plate.getArmorType());
+        int reqlvl = plate.getRequiredLevel();
+        int s = plate.getArmorAttribute().getStrength();
+        int d = plate.getArmorAttribute().getDexterity();
+        int i = plate.getArmorAttribute().getIntelligence();
 
-        // Expecting the required level we set
-        assertEquals(1, plateChest.getRequiredLevel());
+        // Expecting the armor to have the  attributes set
+        String expected = "The Common Plate Chest requires level 1, is made of PLATE, is put on BODY, and gives: Strength = 1, Dexterity = 0, Intelligence = 0";
+        String actual = "The " + name + " requires level " + reqlvl + ", is made of " + type + ", is put on " + slot + ", and gives: " + "Strength = " + s + ", Dexterity = " + d + ", Intelligence = " + i;
 
-        // Expecting the correct slot
-        assertEquals(Slot.BODY, plateChest.getSlot());
-
-        // Expecting the weapon type we set
-        assertEquals(ArmorType.PLATE, plateChest.getArmorType());
-
-        // Setting expectations for the armor attributes we set
-        assertEquals(1, plateChest.getArmorAttribute().getStrength());
-        assertEquals(0, plateChest.getArmorAttribute().getDexterity());
-        assertEquals(0, plateChest.getArmorAttribute().getIntelligence());
+        assertEquals(expected, actual);
     }
-
 }

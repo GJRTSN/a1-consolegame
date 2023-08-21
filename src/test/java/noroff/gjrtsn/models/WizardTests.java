@@ -7,36 +7,47 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class WizardTests {
     @Test
     public void wizardCreationTest() {
-        // Testing for the name we set, the default starting level, and the correct attributes
-        Hero wizard = new Wizard("Severus");
-        assertEquals("Severus", wizard.getName());
-        assertEquals(1, wizard.getLevel());
 
-        // Setting the Wizard starting attributes as expected results
-        assertEquals(1, wizard.getTotalAttributes().getStrength());
-        assertEquals(1, wizard.getTotalAttributes().getDexterity());
-        assertEquals(8, wizard.getTotalAttributes().getIntelligence());
+        // Create new hero
+        Hero wizard = new Wizard("Severus");
+
+        // Get hero attributes
+        int s = wizard.getTotalAttributes().getStrength();
+        int d = wizard.getTotalAttributes().getDexterity();
+        int i = wizard.getTotalAttributes().getIntelligence();
+        int l = wizard.getLevel();
+        String name = wizard.getName();
+
+        // Setting the Wizard name, level and starting attributes as expected results
+        String expected = "Severus is at level 1, their attributes are: Strength = 1, Dexterity = 1, Intelligence = 8";
+        String actual = String.format("%s is at level %d, their attributes are: Strength = %d, Dexterity = %d, Intelligence = %d",
+                name, l, s, d, i);
+
+        assertEquals(expected, actual);
     }
 
     @Test
     public void wizardLevelUpTest() {
+
+        // Create new hero
         Hero wizard = new Wizard("Dumbledore");
 
-        // Getting the Wizard's starting attributes
-        int startingStrength = wizard.getTotalAttributes().getStrength();
-        int startingDexterity = wizard.getTotalAttributes().getDexterity();
-        int startingIntelligence = wizard.getTotalAttributes().getIntelligence();
-
-        // Trigger the level up
+        // Trigger the level-up
         wizard.levelUp();
 
-        // Expecting the Wizard to be at level 2 after levelUp
-        assertEquals(2, wizard.getLevel());
+        // Get hero attributes after level-up
+        int s = wizard.getTotalAttributes().getStrength();
+        int d = wizard.getTotalAttributes().getDexterity();
+        int i = wizard.getTotalAttributes().getIntelligence();
+        int l = wizard.getLevel();
+        String name = wizard.getName();
 
-        // Expecting the attributes to increase by correct amounts for the Wizard hero at levelUp
-        assertEquals(startingStrength + 1, wizard.getTotalAttributes().getStrength());
-        assertEquals(startingDexterity + 1, wizard.getTotalAttributes().getDexterity());
-        assertEquals(startingIntelligence + 5, wizard.getTotalAttributes().getIntelligence());
+        // Setting the Wizard name, new level and starting attributes (1, 1, 8) + 1x level-up gain (1, 1, 5) as expected results
+        String expected = "Dumbledore is at level 2, their attributes are: Strength = 2, Dexterity = 2, Intelligence = 13";
+        String actual = String.format("%s is at level %d, their attributes are: Strength = %d, Dexterity = %d, Intelligence = %d",
+                name, l, s, d, i);
+
+        assertEquals(expected, actual);
     }
 }
 

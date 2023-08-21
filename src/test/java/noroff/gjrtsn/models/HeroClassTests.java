@@ -113,6 +113,30 @@ public class HeroClassTests {
         });
     }
 
+    @Test
+    public void stateDisplayTest() throws InvalidArmorException {
+
+        // Create a hero to display state
+        Hero swashbuckler = new Swashbuckler("Bucky");
+
+        //Give hero armor to increase attributes
+        HeroAttribute armorAttributes = new HeroAttribute(2, 0, 0);
+        Armor mail = new Armor("Mighty Mail", 1, Slot.BODY, ArmorType.MAIL, armorAttributes);
+
+        // Equip the hero with armor
+        swashbuckler.equipArmor(mail);
+
+        // Set expectations for the name, level, class, attributes and total damage
+        String expected = "Bucky is a level 1 Swashbuckler, with Strength = 4, Dexterity = 6, Intelligence = 1 and Damage = 1.06";
+        String actual = swashbuckler.getName() + " is a level " + swashbuckler.getLevel() + " " + swashbuckler.getClass().getSimpleName() + ", with " +
+                "Strength = " + swashbuckler.getTotalAttributes().getStrength() +
+                ", Dexterity = " + swashbuckler.getTotalAttributes().getDexterity() +
+                ", Intelligence = " + swashbuckler.getTotalAttributes().getIntelligence() +
+                " and Damage = " + swashbuckler.calculateDamage();
+
+        assertEquals(expected, actual);
+    }
+
 
 
 
