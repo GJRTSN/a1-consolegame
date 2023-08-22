@@ -20,14 +20,3 @@ The application has no main functionality, it is only run with the written tests
 ## Tests
 
 After the project in open in the IDE, right-click on the **"test"** folder and click **"Run Tests"**.
-
-## Contributing
-
-Contributions are not necessary at this time.
-
-## Project status
-
-> - _19.08.2023_
->
-> _Approximately 10-15 tests are missing, will be implemented shortly._
-
